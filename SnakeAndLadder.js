@@ -4,21 +4,26 @@ class SnakeAndLadder {
     constructor() { }
     main() {
         var player = 1;
-        const INITIAL_POSITION = 1;
-        var dieMove = this.rollDie();
-        var currentPosition = INITIAL_POSITION;
-        this.checkOption(currentPosition,dieMove);
+        const INITIAL_POSITION = 0;
+        this.currentPosition = INITIAL_POSITION;
+        var winningPosition = 100;
+        while (this.currentPosition < winningPosition) {
+            var dieMove = this.rollDie();
+            this.currentPosition = this.checkOption(this.currentPosition, dieMove);
+            console.log("PlayerPosition = " + this.currentPosition);
+        }
     }
     rollDie() {
-        console.log(Math.floor(Math.random() * 6) + 1);
+        return Math.floor(Math.random() * 6) + 1;
     }
-    checkOption(currentPosition,dieMove) {
+
+    checkOption(currentPosition, dieMove) {
         var NO_PLAY = 0;
         var LADDER = 1;
         var SNAKE = 2;
-        var option = Math.floor(Math.random() * 3); 
-        
-        switch (option) {
+        this.option = Math.floor(Math.random() * 3);
+
+        switch (this.option) {
             case NO_PLAY:
                 currentPosition += 0;
                 break;
@@ -32,7 +37,9 @@ class SnakeAndLadder {
                     currentPosition = currentPosition - dieMove;
                 break;
         }
+        return currentPosition;
     }
+
 }
 var obj1 = new SnakeAndLadder();
 obj1.main();
