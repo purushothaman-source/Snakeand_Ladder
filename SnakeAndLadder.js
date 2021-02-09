@@ -7,11 +7,14 @@ class SnakeAndLadder {
         const INITIAL_POSITION = 0;
         this.currentPosition = INITIAL_POSITION;
         var winningPosition = 100;
+        var playerRolled = 0
         while (this.currentPosition < winningPosition) {
             var dieMove = this.rollDie();
+            playerRolled++;
             this.currentPosition = this.checkOption(this.currentPosition, dieMove);
             console.log("PlayerPosition = " + this.currentPosition);
         }
+        console.log("Player Rolled "+playerRolled +" times to won the game");
     }
     rollDie() {
         return Math.floor(Math.random() * 6) + 1;
