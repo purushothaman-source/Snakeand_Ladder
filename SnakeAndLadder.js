@@ -28,8 +28,12 @@ class SnakeAndLadder {
                 currentPosition += 0;
                 break;
             case LADDER:
-                currentPosition = currentPosition + dieMove;
+                if ((currentPosition + dieMove) > 100)
+                    currentPosition = currentPosition;
+                else
+                    currentPosition = currentPosition + dieMove;
                 break;
+
             case SNAKE:
                 if ((currentPosition - dieMove) <= 0)
                     currentPosition = 0;
